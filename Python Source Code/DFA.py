@@ -33,3 +33,19 @@ class DFA:
         self.history = []
         self.validate_dfa()
     
+    def validate_dfa(self):
+        """
+            Validate the DFA to ensure that it meets all necessary conditions.
+        """
+        if self.start_state not in self.states:
+            raise ValueError(f"Start state {self.start_state} is not in states")
+        if not self.accept_states.issubset(self.states):
+            raise ValueError("Some accept states are not in the set of states")
+        for (state, symbol), next_state in self.transition_function.items():
+            if state not in self.states:
+                raise ValueError(f"State {state} in transition function is not in states")
+            if symbol not in self.alphabet:
+                raise ValueError(f"Symbol {symbol} in transition function is not in alphabet")
+            if next_state not in self.states:
+                raise ValueError(f"Next state {next_state} in transition function is not in states")
+    
