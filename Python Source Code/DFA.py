@@ -49,3 +49,10 @@ class DFA:
             if next_state not in self.states:
                 raise ValueError(f"Next state {next_state} in transition function is not in states")
     
+    def reset(self):
+        """
+            Reset the DFA to the start state.
+        """
+        self.current_state = self.start_state
+        self.history = []
+    
