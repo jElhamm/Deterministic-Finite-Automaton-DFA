@@ -56,3 +56,18 @@ class DFA:
         self.current_state = self.start_state
         self.history = []
     
+    def transition(self, state, symbol):
+        """
+            Get the next state from the transition function.
+
+                - param state: The current state.
+                - param symbol: The input symbol.
+                - return: The next state.
+        """
+        if (state, symbol) in self.transition_function:
+            next_state = self.transition_function[(state, symbol)]
+            self.history.append((state, symbol, next_state))
+            return next_state
+        else:
+            raise ValueError(f"No transition defined for state {state} on symbol {symbol}")
+    
