@@ -71,3 +71,17 @@ class DFA:
         else:
             raise ValueError(f"No transition defined for state {state} on symbol {symbol}")
     
+    def process_string(self, input_string):
+        """
+            Process an input string through the DFA.
+
+                - param input_string: The input string to process.
+                - return: True if the string is accepted, False otherwise.
+        """
+        self.reset()
+        for symbol in input_string:
+            if symbol not in self.alphabet:
+                raise ValueError(f"Symbol {symbol} is not in the alphabet")
+            self.current_state = self.transition(self.current_state, symbol)
+        return self.current_state in self.accept_states
+    
