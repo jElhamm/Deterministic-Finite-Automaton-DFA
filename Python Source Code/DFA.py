@@ -85,3 +85,11 @@ class DFA:
             self.current_state = self.transition(self.current_state, symbol)
         return self.current_state in self.accept_states
     
+    def is_accepting(self):
+        """
+            Check if the current state is an accepting state.
+
+                - return: True if the current state is an accepting state, False otherwise.
+        """
+        return self.current_state in self.accept_states
+    
