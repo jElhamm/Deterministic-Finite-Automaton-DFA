@@ -93,3 +93,15 @@ class DFA:
         """
         return self.current_state in self.accept_states
     
+    def print_dfa(self):
+        """
+            Print the DFA components.
+        """
+        print("States:", self.states)
+        print("Alphabet:", self.alphabet)
+        print("Transition Function:")
+        for (state, symbol), next_state in self.transition_function.items():
+            print(f"  δ({state}, {symbol}) -> {next_state}")
+        print("Start State:", self.start_state)
+        print("Accept States:", self.accept_states)
+    
