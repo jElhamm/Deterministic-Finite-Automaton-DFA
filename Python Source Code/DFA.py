@@ -105,3 +105,11 @@ class DFA:
         print("Start State:", self.start_state)
         print("Accept States:", self.accept_states)
     
+    def get_history(self):
+        """
+            Get the history of transitions.
+
+                - return: A list of transitions (state, symbol, next_state).
+        """
+        return self.history
+    
