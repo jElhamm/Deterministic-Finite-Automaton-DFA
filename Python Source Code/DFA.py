@@ -113,3 +113,11 @@ class DFA:
         """
         return self.history
     
+    def get_language(self):
+            """
+                Generates the accepted language of the DFA. Basic version, can be optimized or extended.
+
+                    - return: Set of strings accepted by the DFA.
+            """
+        
+    
