@@ -119,5 +119,20 @@ class DFA:
 
                     - return: Set of strings accepted by the DFA.
             """
-        
+            
+            def dfs(current_state, current_string, visited):                          # Depth-first search function to traverse the DFA states
+                if current_state in visited:                                          # Avoid revisiting states
+                    return
+                visited.add(current_state)
+                if current_state in self.accept_states:                               # If the current state is an accept state, add the current string to the language
+                    language.add(current_string) 
+                
+                for symbol in self.alphabet:                                          # Depth-first search function to traverse the DFA states
+                    next_state = self.transition_function.get((current_state, symbol))
+                    if next_state:
+                        dfs(next_state, current_string + symbol, visited.copy())      # Recursively explore the next state
+
+            language = set()
+            dfs(self.start_state, '', set())                                          # Start DFS from the initial state with an empty string
+            return language
     
