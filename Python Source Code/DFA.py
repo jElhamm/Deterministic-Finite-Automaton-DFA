@@ -136,3 +136,15 @@ class DFA:
             dfs(self.start_state, '', set())                                          # Start DFS from the initial state with an empty string
             return language
     
+    def check_input_language(self, input_string):
+        """
+            Check if the input string belongs to the language defined by the DFA.
+
+                - param input_string: The input string to check.
+                - return: True if the input string is part of the language, False otherwise.
+        """
+        try:
+            return self.process_string(input_string)
+        except ValueError:
+            return False
+    
