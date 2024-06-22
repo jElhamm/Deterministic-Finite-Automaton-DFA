@@ -26,3 +26,14 @@ class DFAParser:
             dfa_data = json.load(file)
         return DFAParser.parse_from_dict(dfa_data)
     
+    @staticmethod
+    def parse_from_string(dfa_string):
+        """
+            Parse DFA definition from a JSON string.
+
+                - param dfa_string: JSON string containing DFA definition.
+                - return: An instance of DFA.
+        """
+        dfa_data = json.loads(dfa_string)
+        return DFAParser.parse_from_dict(dfa_data)
+    
