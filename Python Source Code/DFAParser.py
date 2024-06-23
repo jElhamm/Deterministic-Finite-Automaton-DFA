@@ -37,3 +37,19 @@ class DFAParser:
         dfa_data = json.loads(dfa_string)
         return DFAParser.parse_from_dict(dfa_data)
     
+    @staticmethod
+    def parse_from_dict(dfa_data):
+        """
+            Parses DFA definition from a dictionary.
+
+                - param dfa_data: Dictionary containing DFA definition.
+                - return: DFA instance.
+        """
+        states = set(dfa_data['states'])                                              # Extract states.
+        alphabet = set(dfa_data['alphabet'])                                          # Extract alphabet.
+        # Parse transition function from dictionary.
+        transition_function = {(state, symbol): next_state for state, symbol, next_state in dfa_data['transition_function']}
+        start_state = dfa_data['start_state']                                         # Extract start state.
+        accept_states = set(dfa_data['accept_states'])                                # Extract accept states.
+        return DFA(states, alphabet, transition_function, start_state, accept_states)
+    
