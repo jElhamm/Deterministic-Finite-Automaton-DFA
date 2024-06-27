@@ -53,3 +53,23 @@ class DFAParser:
         accept_states = set(dfa_data['accept_states'])                                # Extract accept states.
         return DFA(states, alphabet, transition_function, start_state, accept_states)
     
+    @staticmethod
+    def parse_from_text_file(file_path):
+        """
+            Parses DFA definition from a text file with specific format.
+
+                - param file_path: Path to DFA definition text file.
+                - return: DFA instance.
+        """
+        with open(file_path, 'r') as file:                                          # Read lines from the text file
+            lines = file.readlines()
+        states = set(lines[0].strip().split())                                      # Extract states
+        alphabet = set(lines[1].strip().split())                                    # Extract alphabet
+        start_state = lines[2].strip()                                              # Extract start state
+        accept_states = set(lines[3].strip().split())                               # Extract accept states
+        transition_function = {}
+        for line in lines[4:]:                                                      # Parse transition function
+            state, symbol, next_state = line.strip().split()
+            transition_function[(state, symbol)] = next_state
+        return DFA(states, alphabet, transition_function, start_state, accept_states)
+    
